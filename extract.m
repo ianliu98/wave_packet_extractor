@@ -1,5 +1,5 @@
 clear;
-file = csvread('extract_sample.csv');
+file = csvread('extract_a3ug_0.02_0.04.csv');
 forf = csvread('a3ug_forf.csv');
 T1 = 8000;
 T2 = 15000;
@@ -15,7 +15,7 @@ caxis([max_value-1.5, max_value])
 colorbar()
 hold on
 
-% select two points
+% select two points to calculate k
 [a, b] = ginput(2);
 a = floor(a);
 b = floor(b);
@@ -33,7 +33,7 @@ m = b(1) - k*a(1);
 ylim([0,size_file(1)])
 x = 1:1:size_file(2);
 plot(x, k*x+m)
-[offset_x, offset_y] = ginput(2);
+[offset_x, offset_y] = ginput(2);  % select two points above and below the line
 m_top = m + abs(offset_y(1) - (k*offset_x(1)+m));
 m_bottom = m - abs(offset_y(2) - (k*offset_x(2)+m));
 m_range = m_top - m_bottom;
